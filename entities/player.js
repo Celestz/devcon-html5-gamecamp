@@ -34,6 +34,8 @@ let Player = function(x, y, imgSrc) {
   }
 
   this.canTeleport= function(canvas) {
+    this.boundaries.x = canvas.width
+    this.boundaries.y = canvas.height
     this.teleport = true
   }
 
@@ -55,10 +57,12 @@ let Player = function(x, y, imgSrc) {
 
   this.update = function() {
     if(this.canTeleport) {
+      if(this.pos.x < 0) this.pos.x = this.boundaries.x
+      if(this.pos.y < 0) this.pos.y = this.boundaries.y
+      if(this.pos.x > this.boundaries.x) this.pos.x = 0
+      if(this.pos.y > this.boundaries.y) this.pos.y = 0
     }
-    // if(this.canTeleport && this.pos.x < this.boundaries.x) {
-    //   this.pos.x = -150
-    // }
+
     if(this.boundLock) {
       if(this.pos.y < 0) this.pos.y += this.moveSpeed
       if(((this.pos.y+this.size.h ) > this.boundaries.y)) this.pos.y -= this.moveSpeed
