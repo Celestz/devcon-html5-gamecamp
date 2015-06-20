@@ -39,7 +39,8 @@ function init() {
 
   mario = new Player(100, 100, 'img/super-mario.png')
   bird = new Player(700, 100, 'img/angry-bird.png')
-  
+  mario.bounded(CANVAS)
+  bird.canTeleport()
   mario.setKeyCodes(keyCodesMario)
   bird.setKeyCodes(keyCodesBird)
 }
